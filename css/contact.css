@@ -32,19 +32,59 @@ body, html {
 
 #contactInfo {
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr; /* Two columns of equal width */
-    gap: 20px; /* Space between rows and columns */
-    width: 80%;
+    grid-template-rows: 1fr 1fr 1fr;
+    width: 40em;
     margin: auto;
+    animation: slide-in 1s ease-out;
   }
   .grid-item {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-size: 20px;
     padding: 20px;
-    text-align: center;
+    color: #fff;
+    text-shadow: 0 0 10px #202020;
+    z-index: 2;
   }
-  .row {
+  .grid-item {
     border-bottom: 1px solid #ccc; /* Horizontal line between rows */
   }
   /* Remove bottom border from the last row */
-  .row:last-child {
+  .grid-item:last-child {
     border-bottom: none;
   }
+
+a {
+  color: inherit;
+}
+
+  @keyframes slide-in {
+      from {
+        transform: translate(0, 40px);
+        opacity: 0;
+      } to {
+        transform: translate(0, 0);
+        opacity: 1;
+      }
+  }
+
+  .flash {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    transform-origin: 0 0;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    animation: bloom 5s ease-in-out both;
+    mix-blend-mode: color-dodge;
+    transition: 5s linear;
+}
+
+.right-align {
+  float: right;
+}
+
+@keyframes bloom {
+  0% { filter: blur(50px); scale: 0; }
+  10% { filter: blur(10px); scale: 1; }
+  100% { filter: blur(500px); scale: 0; }
+}
