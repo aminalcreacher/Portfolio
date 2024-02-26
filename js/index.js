@@ -31,9 +31,11 @@ function fancigate(div, url) {
   const originalColor = div.style.backgroundColor;
   div.style.backgroundColor = "#303030";
   div.style.animation = `zoom-trans 1s cubic-bezier(.11,-0.09,1,-0.28) forwards`;
-  window.addEventListener('popstate', function(event) {
-    // Force a full page reload. FTLoG fix this later
-    window.location.reload(true);
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted) {
+      // Force a full page reload. FTLoG fix this later
+      window.location.reload(true);
+    }
   });
   setTimeout(() => {
     window.location.href = url;
