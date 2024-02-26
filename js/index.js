@@ -6,6 +6,7 @@ const highlights = document.querySelectorAll(".highlight");
 const flashContainer = document.getElementById("flashContainer");
 let themeColor = null;
 let animate = true;
+let dirty = false;
 
 document.querySelectorAll(".popin").forEach((element, index) => {
   element.style.animation = `pop-in 0.5s ${
@@ -15,7 +16,6 @@ document.querySelectorAll(".popin").forEach((element, index) => {
 });
 
 function fancigate(div, url) {
-  animate = false;
   const rect = div.getBoundingClientRect();
   const divCenterX = rect.left + rect.width / 2;
   const viewportCenterX = window.innerWidth / 2;
@@ -24,9 +24,25 @@ function fancigate(div, url) {
     child.style.animation = `fade-in 0.5s reverse ease-out forwards`;
   });
   div.style.zIndex = `5`;
-  // div.style.filter = `blur(500px)`;
+  const originalColor = div.style.backgroundColor;
   div.style.backgroundColor = "#303030";
   div.style.animation = `zoom-trans 1s cubic-bezier(.11,-0.09,1,-0.28) forwards`;
+  window.addEventListener('pageshow', function(event) {
+    if (event.persisted) {
+      reload()
+      // animate = true;
+      // updatePosition();
+      // emitLights();
+      // Array.from(div.children).forEach((child) => {
+      //   child.style.animation = `fade-in .5s 10s ease-out `;
+      // });
+      // div.style.backgroundColor = originalColor;
+      // div.style.animation = `zoom-return 1s ease-out`;
+      // this.setTimeout(() => {
+      //   div.style.zIndex = `auto`;
+      // }, 1000);
+    }
+  });
   setTimeout(() => {
     window.location.href = url;
     console.log(`attempted to navigate`);
