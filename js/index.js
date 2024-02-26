@@ -15,6 +15,10 @@ document.querySelectorAll(".popin").forEach((element, index) => {
   element.style.visibility = "visible";
 });
 
+if (performance.navigation.type === 2) { // if the page is navigated to by the back button
+  location.reload(true); // force reload
+}
+
 function fancigate(div, url) {
   const rect = div.getBoundingClientRect();
   const divCenterX = rect.left + rect.width / 2;
@@ -27,21 +31,9 @@ function fancigate(div, url) {
   const originalColor = div.style.backgroundColor;
   div.style.backgroundColor = "#303030";
   div.style.animation = `zoom-trans 1s cubic-bezier(.11,-0.09,1,-0.28) forwards`;
-  window.addEventListener('pageshow', function(event) {
-    if (event.persisted) {
-      reload();
-      // animate = true;
-      // updatePosition();
-      // emitLights();
-      // Array.from(div.children).forEach((child) => {
-      //   child.style.animation = `fade-in .5s 10s ease-out `;
-      // });
-      // div.style.backgroundColor = originalColor;
-      // div.style.animation = `zoom-return 1s ease-out`;
-      // this.setTimeout(() => {
-      //   div.style.zIndex = `auto`;
-      // }, 1000);
-    }
+  window.addEventListener('popstate', function(event) {
+    // Force a full page reload. FTLoG fix this later
+    window.location.reload(true);
   });
   setTimeout(() => {
     window.location.href = url;
