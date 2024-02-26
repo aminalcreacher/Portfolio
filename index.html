@@ -5,8 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="212121" />
     <title>Thomas Hall's Resume</title>
-    <!-- Link to external CSS file -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/index.css">
     <!-- Fonts from Google Fonts (thank you google fonts) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,11 +13,8 @@
 </head>
 <body>
     <div id="flashContainer"></div>
-    <div id="copyright">
-        <h2>&#169 2024 Thomas Hall</h2>
-    </div>
     <div id="circleContainer">
-        <div class="circle popin" onclick="fancigate(this, 'https://google.com')">
+        <div class="circle popin" onclick="fancigate(this, 'http://127.0.0.1:5500/contact.html')">
             <div class="gold highlight"></div>
             <div class="purple inset"><div class="highlight"></div></div>
             <div class="pagetitle">
@@ -40,6 +36,9 @@
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
+    <div id="copyright">
+        <h2>&#169 2024 Thomas Hall</h2>
+    </div>
+    <script src="js/index.js"></script>
 </body>
 </html>
