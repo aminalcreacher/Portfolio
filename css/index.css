@@ -1,0 +1,220 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background-color: #303030;
+    display: grid;
+    place-items: center;
+    animation: fade-in 1s ease-out forwards;
+}
+
+#flashContainer {
+    top: 0;
+    left: 0;
+    width: 100dvw;
+    height: 100dvh;
+    overflow: hidden;
+    filter: blur(5px);
+    pointer-events: none;
+}
+
+#flashContainer:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, rgba(19, 19, 19, 0) 0%, rgb(19, 19, 19) 70%, rgb(19, 19, 19) 100%), url(https://grainy-gradients.vercel.app/noise.svg);
+    opacity: 50%;
+}
+
+#circleContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 80vw;
+    height: 100%;
+    padding: 0 10vw;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    overflow: hidden;
+}
+
+.circle {
+    position: relative;
+    width: 20vw;
+    max-width: 365px;
+    aspect-ratio: 1/1;
+    background-color: rgba(0, 0, 0, 1);
+    border-radius: 50%;
+    box-shadow: 0 0 100px #202020;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.circle:hover {
+    animation: shrink 0.5s reverse ease-in-out forwards;
+}
+
+.inset {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
+    background-color: #555555;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.highlight, .gold {
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgb(255, 173, 80) 0%, rgba(255, 173, 80, 0) 100%), url(https://grainy-gradients.vercel.app/noise.svg);
+}
+
+.inset > .highlight {
+    opacity: .7;
+    mix-blend-mode: screen;
+}
+
+.flash {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    transform-origin: 0 0;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    animation: bloom 5s ease-in-out both;
+    mix-blend-mode: color-dodge;
+    transition: 5s linear;
+}
+
+.pagetitle {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    opacity: 0;
+    transition: .25s ease-out;
+}
+
+.circle:hover > .pagetitle {
+    opacity: 1;
+}
+
+h1, h2 {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    pointer-events: none;
+    color: #FFF;
+}
+
+h1 {
+    font-weight: 400;
+    font-style: normal;
+}
+
+h2 {
+    font-weight: 500;
+    font-size: 1em;
+    opacity: .5;
+    font-style: normal;
+}
+
+#copyright {
+    position: fixed;
+    bottom: 0;
+    right: 20px;
+}
+
+.popin {
+    visibility: hidden;
+}
+
+.green { background-color: #1359b4; }
+.purple { background-color: #8328ad; }
+.peach { background-color: #9e4a29; }
+
+.gold {
+    filter: contrast(2);
+}
+
+@media (orientation: portrait) {
+    body, html {
+        flex-direction: column;
+    }
+}
+
+@keyframes pop-in {
+    from { scale: 0; } 
+    to { scale: 1; }
+}
+
+@keyframes bloom {
+    0% { filter: blur(50px); scale: 0; }
+    10% { filter: blur(10px); scale: 1; }
+    100% { filter: blur(500px); scale: 0; }
+}
+
+@keyframes shrink {
+    from { scale: 1.3; } 
+    to { scale: 1; }
+}
+
+@keyframes fade-in {
+    from { opacity: 0; } 
+    to { opacity: 1; }
+}
+
+@keyframes zoom-trans {
+    from {
+        scale: 1.2;
+    }
+    to {
+        scale: 10;
+    }
+}
+
+@media (orientation: portrait) {
+    .body .html {
+        height: 720px;
+        overflow: auto;
+    }
+
+    #circleContainer {
+        width: 100%; /* Use the full viewport width */
+        height: 720px; /* Allow the container's height to grow as needed */
+        flex-direction: column; /* Stack circles vertically */
+        padding: 0; /* Adjust padding for vertical spacing */
+    }
+
+    #circleContainer:last-child {
+        margin: 0 0 20px 0;
+    }
+
+    #flashContainer {
+        width: 100%; /* Use the full viewport width */
+        height: 720px; /* Allow the container's height to grow as needed */
+    }
+
+    .circle {
+        width: auto;
+        height: 180px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    h1 {
+      font-size: 25px;
+    }
+  }
+
+@media (pointer: coarse) {
+    .pagetitle {
+        opacity: 1;
+    }
+}
