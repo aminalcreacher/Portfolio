@@ -88,3 +88,7 @@ a {
   10% { filter: blur(10px); scale: 1; }
   100% { filter: blur(500px); scale: 0; }
 }
+
+@keyframes fade-in {
+    from { opacity: 0; }
+}
