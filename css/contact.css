@@ -1,0 +1,50 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    background-color: #303030;
+    display: grid;
+    place-items: center;
+    animation: fade-in 1s ease-out forwards;
+}
+
+#flashContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100dvw;
+    height: 100dvh;
+    overflow: hidden;
+    filter: blur(5px);
+    pointer-events: none;
+}
+
+#flashContainer:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(ellipse at center, rgba(19, 19, 19, 0) 0%, rgb(19, 19, 19) 70%, rgb(19, 19, 19) 100%), url(https://grainy-gradients.vercel.app/noise.svg);
+    opacity: 50%;
+}
+
+#contactInfo {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr; /* Two columns of equal width */
+    gap: 20px; /* Space between rows and columns */
+    width: 80%;
+    margin: auto;
+  }
+  .grid-item {
+    padding: 20px;
+    text-align: center;
+  }
+  .row {
+    border-bottom: 1px solid #ccc; /* Horizontal line between rows */
+  }
+  /* Remove bottom border from the last row */
+  .row:last-child {
+    border-bottom: none;
+  }
