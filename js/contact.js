@@ -28,8 +28,6 @@ function emitLights() {
   const y = edgeBias(Math.random()) * height;
 
   createLight(flashContainer, x, y, 500);
-
-  console.log(`attempted to create light`);
 }
 
 function edgeBias(value) {
