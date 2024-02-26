@@ -29,7 +29,7 @@ function fancigate(div, url) {
   div.style.animation = `zoom-trans 1s cubic-bezier(.11,-0.09,1,-0.28) forwards`;
   window.addEventListener('pageshow', function(event) {
     if (event.persisted) {
-      reload()
+      reload();
       // animate = true;
       // updatePosition();
       // emitLights();
